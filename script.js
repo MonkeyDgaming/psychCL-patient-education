@@ -68,6 +68,42 @@ const regions = {
 
 const tabContent = {
   nt: [
+    {
+      title: 'Acetylcholine',
+      plain: 'Helps tune attention and memory so the brain can focus and learn.',
+      detail: 'Low cholinergic activity is a major delirium hypothesis and is important in Alzheimer-related cognitive symptoms.',
+      label: 'solid'
+    },
+    {
+      title: 'Dopamine',
+      plain: 'Helps the brain tag things as important, motivating, or worth acting on.',
+      detail: 'Dopamine signaling is strongly linked to psychosis and is one target of antipsychotic medicines.',
+      label: 'solid'
+    },
+    {
+      title: 'Glutamate',
+      plain: 'Acts as the brain’s major excitatory messenger, helping signals move forward.',
+      detail: 'NMDA/glutamate theories are relevant to psychosis and neurodegeneration, but the clinical story is more complex than a simple high/low level.',
+      label: 'likely'
+    },
+    {
+      title: 'GABA',
+      plain: 'Acts as a major inhibitory messenger, helping quiet or balance brain signaling.',
+      detail: 'Sedatives, withdrawal states, seizures, and sleep-wake disruption can alter inhibitory balance and contribute to confusion or psychotic-like experiences.',
+      label: 'likely'
+    },
+    {
+      title: 'Norepinephrine & serotonin',
+      plain: 'Help shape arousal, stress response, mood, sleep, attention, and perception.',
+      detail: 'Delirium reviews describe variable changes in norepinephrine and serotonin systems rather than one consistent direction.',
+      label: 'likely'
+    },
+    {
+      title: 'Melatonin & circadian biology',
+      plain: 'Helps coordinate sleep-wake timing so the brain knows when to be alert or rest.',
+      detail: 'Low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.',
+      label: 'likely'
+    }
     ['Acetylcholine', 'Attention and memory “tuning.” Low cholinergic activity is a major delirium hypothesis and is important in Alzheimer-related cognitive symptoms.', 'solid'],
     ['Dopamine', 'Salience, movement, reward, motivation, and prediction. Dysregulated dopamine signaling is strongly linked to psychotic symptoms, reward/salience assignment, and some manic activation; it is one target of antipsychotic medicines.', 'solid'],
     ['Glutamate', 'The major excitatory messenger. TBI research includes glutamate-related excitotoxic injury, while NMDA/glutamate theories are also relevant to psychosis and depression research; the clinical story is more complex than a simple high/low level.', 'likely'],
@@ -151,6 +187,18 @@ function renderRegion(regionKey) {
 
 function renderTab(tabKey) {
   const target = document.getElementById(`${tabKey}Panel`);
+
+  if (tabKey === 'nt') {
+    target.innerHTML = `<div class="pathway-grid">${tabContent.nt.map(({ title, plain, detail, label }) => `
+      <article class="pathway-card">
+        <h3><span>${title}</span>${badge(label)}</h3>
+        <p><strong>Plain language:</strong> ${plain}</p>
+        <p><strong>Clinical relevance:</strong> ${detail}</p>
+      </article>`).join('')}</div>`;
+    return;
+  }
+
+  target.innerHTML = `<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
   const contextMarkup = tabKey === 'nt' ? '<p class="pathway-context" id="ntConditionContext" aria-live="polite"></p>' : '';
 
   target.innerHTML = `${contextMarkup}<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
