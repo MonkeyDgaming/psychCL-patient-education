@@ -1,5 +1,6 @@
 const conditions = {
   delirium: {
+    shortName: 'Delirium',
     title: 'Delirium: the brain is acutely overwhelmed',
     core: 'A sudden change in attention and awareness that often fluctuates over the day. It is commonly triggered by medical illness, medications, surgery, pain, sleep loss, dehydration, substance effects, or infection.',
     anatomy: 'Attention and arousal systems are stressed: frontal attention control, thalamic signal routing, brainstem sleep-wake systems, and widespread network connectivity.',
@@ -7,6 +8,7 @@ const conditions = {
     label: 'likely'
   },
   dementia: {
+    shortName: 'Dementia',
     title: 'Dementia: brain systems lose function over time',
     core: 'A persistent decline in thinking skills severe enough to interfere with independence. Alzheimer disease, vascular disease, Lewy body disease, Parkinson disease, frontotemporal degeneration, and other conditions can cause dementia.',
     anatomy: 'The pattern depends on cause. Memory networks often include hippocampus and temporal regions; planning and judgment depend heavily on frontal networks; vascular injury can disrupt many routes.',
@@ -14,6 +16,7 @@ const conditions = {
     label: 'solid'
   },
   psychosis: {
+    shortName: 'Psychosis',
     title: 'Psychosis: the brain assigns reality-level importance to experiences that may not match the outside world',
     core: 'Psychosis can include hearing or seeing things others do not, fixed false beliefs, suspiciousness, or disorganized thinking. It can occur in primary psychiatric illness, delirium, dementia, substances, medications, sleep deprivation, seizures, and other medical conditions.',
     anatomy: 'Research highlights dopamine-linked salience systems, prefrontal control, basal ganglia reward/salience loops, thalamic filtering, temporal-language systems, and cerebello-thalamo-cortical circuits.',
@@ -21,6 +24,8 @@ const conditions = {
     label: 'likely'
   }
 };
+
+let activeCondition = 'delirium';
 
 const regions = {
   prefrontal: {
@@ -114,6 +119,7 @@ const quizItems = [
 const badge = label => `<span class="badge ${label}">${label === 'solid' ? 'Solid evidence' : label === 'likely' ? 'Likely / still studied' : 'Teaching metaphor'}</span>`;
 
 function renderCondition(conditionKey) {
+  activeCondition = conditionKey;
   const item = conditions[conditionKey];
   document.getElementById('conditionSpotlight').innerHTML = `
     <h3>${item.title}</h3>
@@ -122,6 +128,14 @@ function renderCondition(conditionKey) {
       <div><p class="eyebrow">Brain areas</p><p>${item.anatomy}</p>${badge(item.label)}</div>
       <div><p class="eyebrow">Science status</p><p>${item.science}</p>${badge(item.label)}</div>
     </div>`;
+  updateNtConditionContext();
+}
+
+function updateNtConditionContext() {
+  const context = document.getElementById('ntConditionContext');
+  if (!context) return;
+
+  context.textContent = `Showing neurotransmitter information for: ${conditions[activeCondition].shortName || conditions[activeCondition].title}`;
 }
 
 function renderRegion(regionKey) {
@@ -136,11 +150,17 @@ function renderRegion(regionKey) {
 
 function renderTab(tabKey) {
   const target = document.getElementById(`${tabKey}Panel`);
-  target.innerHTML = `<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
+  const contextMarkup = tabKey === 'nt' ? '<p class="pathway-context" id="ntConditionContext" aria-live="polite"></p>' : '';
+
+  target.innerHTML = `${contextMarkup}<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
     <article class="pathway-card">
       <h3><span>${title}</span>${badge(label)}</h3>
       <p>${text}</p>
     </article>`).join('')}</div>`;
+
+  if (tabKey === 'nt') {
+    updateNtConditionContext();
+  }
 }
 
 function renderChecklist() {
