@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Patient-facing delirium, dementia, and psychosis education tool with evidence labels, plain-language analogies, and interactive brain pathway content." />
+  <title>Brain Changes: Delirium, Dementia & Psychosis</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero" id="top">
+    <nav class="top-nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Brain education home">
+        <span class="brand-mark" aria-hidden="true">🧠</span>
+        <span>Brain Changes Guide</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#compare">Compare</a>
+        <a href="#brain-map">Brain map</a>
+        <a href="#pathways">Pathways</a>
+        <a href="#visit-guide">Visit guide</a>
+      </div>
+    </nav>
+
+    <section class="hero-content">
+      <div>
+        <p class="eyebrow">Patient & family education</p>
+        <h1>Understanding delirium, dementia, and psychosis without oversimplifying the science.</h1>
+        <p class="hero-copy">Use this phone-friendly guide to explain what is well established, what is likely but still being studied, and what is a teaching metaphor meant to make the ideas easier to remember.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#compare">Start with the big picture</a>
+          <a class="button secondary" href="#clinician-note">Clinician notes</a>
+        </div>
+      </div>
+      <aside class="safety-card" aria-labelledby="safetyTitle">
+        <h2 id="safetyTitle">When to seek urgent help</h2>
+        <p>New confusion, sudden behavior change, fever, severe sleepiness, trouble breathing, head injury, new weakness, seizures, or thoughts of self-harm should be treated as urgent medical concerns.</p>
+        <p class="small">This tool supports education. It does not diagnose, replace emergency care, or replace advice from a licensed clinician.</p>
+      </aside>
+    </section>
+  </header>
+
+  <main>
+    <section class="legend section-card" aria-labelledby="legendTitle">
+      <div>
+        <p class="eyebrow">Evidence labels used throughout</p>
+        <h2 id="legendTitle">Three kinds of statements</h2>
+      </div>
+      <div class="legend-grid">
+        <article class="label-card solid">
+          <span class="badge solid">Solid evidence</span>
+          <p>Findings that are broadly accepted in clinical care or supported by substantial research.</p>
+        </article>
+        <article class="label-card likely">
+          <span class="badge likely">Likely / still studied</span>
+          <p>Research-supported explanations that are plausible but incomplete, variable, or still being refined.</p>
+        </article>
+        <article class="label-card metaphor">
+          <span class="badge metaphor">Teaching metaphor</span>
+          <p>Plain-language imagery that helps people understand the concept but is not a literal brain mechanism.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-card" id="compare" aria-labelledby="compareTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Step 1</p>
+        <h2 id="compareTitle">Compare the three experiences</h2>
+        <p>Tap a card to focus the rest of the page on that condition.</p>
+      </div>
+      <div class="condition-grid" role="list">
+        <button class="condition-card active" type="button" data-condition="delirium" role="listitem" aria-pressed="true">
+          <span class="condition-icon" aria-hidden="true">⚡</span>
+          <h3>Delirium</h3>
+          <p><strong>Timing:</strong> sudden change, usually hours to days.</p>
+          <p><strong>Pattern:</strong> attention and alertness fluctuate.</p>
+          <span class="badge solid">Solid evidence</span>
+        </button>
+        <button class="condition-card" type="button" data-condition="dementia" role="listitem" aria-pressed="false">
+          <span class="condition-icon" aria-hidden="true">🕰️</span>
+          <h3>Dementia</h3>
+          <p><strong>Timing:</strong> usually gradual and persistent.</p>
+          <p><strong>Pattern:</strong> memory, language, planning, or behavior decline affects daily life.</p>
+          <span class="badge solid">Solid evidence</span>
+        </button>
+        <button class="condition-card" type="button" data-condition="psychosis" role="listitem" aria-pressed="false">
+          <span class="condition-icon" aria-hidden="true">🔊</span>
+          <h3>Psychosis</h3>
+          <p><strong>Timing:</strong> can be brief or persistent depending on cause.</p>
+          <p><strong>Pattern:</strong> hallucinations, delusions, or disorganized thinking.</p>
+          <span class="badge solid">Solid evidence</span>
+        </button>
+      </div>
+      <div class="spotlight" id="conditionSpotlight" aria-live="polite"></div>
+    </section>
+
+    <section class="section-card split" id="brain-map" aria-labelledby="brainMapTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Step 2</p>
+        <h2 id="brainMapTitle">Functional neuroanatomy map</h2>
+        <p>Tap a region to explain what it does and why it can matter in delirium, dementia, or psychosis.</p>
+      </div>
+      <div class="brain-layout">
+        <div class="brain-visual" role="group" aria-label="Simplified brain diagram with tappable regions">
+          <button class="brain-node prefrontal active" data-region="prefrontal" type="button">Prefrontal<br />cortex</button>
+          <button class="brain-node temporal" data-region="temporal" type="button">Temporal<br />lobe</button>
+          <button class="brain-node hippocampus" data-region="hippocampus" type="button">Hippocampus</button>
+          <button class="brain-node thalamus" data-region="thalamus" type="button">Thalamus</button>
+          <button class="brain-node basal" data-region="basal" type="button">Basal<br />ganglia</button>
+          <button class="brain-node brainstem" data-region="brainstem" type="button">Brainstem</button>
+        </div>
+        <article class="region-panel" id="regionPanel" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <section class="section-card" id="pathways" aria-labelledby="pathwaysTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Step 3</p>
+        <h2 id="pathwaysTitle">Chemical messengers and brain networks</h2>
+        <p>Move between neurotransmitters and network explanations. Each item includes an evidence label.</p>
+      </div>
+      <div class="tab-list" role="tablist" aria-label="Pathway topics">
+        <button class="tab-button active" role="tab" aria-selected="true" aria-controls="ntPanel" id="ntTab" data-tab="nt">Neurotransmitters</button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="networkPanel" id="networkTab" data-tab="network">Networks</button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="metaphorPanel" id="metaphorTab" data-tab="metaphor">Metaphors</button>
+      </div>
+      <div class="tab-panel active" id="ntPanel" role="tabpanel" aria-labelledby="ntTab"></div>
+      <div class="tab-panel" id="networkPanel" role="tabpanel" aria-labelledby="networkTab" hidden></div>
+      <div class="tab-panel" id="metaphorPanel" role="tabpanel" aria-labelledby="metaphorTab" hidden></div>
+    </section>
+
+    <section class="section-card" id="visit-guide" aria-labelledby="visitGuideTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Step 4</p>
+        <h2 id="visitGuideTitle">Questions families can bring to the visit</h2>
+        <p>Use the checklist to collect observations that help clinicians separate acute delirium from chronic dementia, primary psychiatric illness, medication effects, substance effects, and medical causes.</p>
+      </div>
+      <div class="checklist" id="checklist"></div>
+      <button class="button secondary" type="button" id="resetChecklist">Clear checklist</button>
+    </section>
+
+    <section class="section-card" aria-labelledby="quizTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Teach-back</p>
+        <h2 id="quizTitle">Quick understanding check</h2>
+      </div>
+      <div class="quiz" id="quiz"></div>
+    </section>
+
+    <section class="section-card" id="clinician-note" aria-labelledby="clinicianNoteTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Implementation note</p>
+        <h2 id="clinicianNoteTitle">How to use this with patients and families</h2>
+      </div>
+      <div class="two-column">
+        <article>
+          <h3>Suggested framing</h3>
+          <p>“I am going to show you a simplified map. The labels tell us whether a statement is established medical knowledge, an active research explanation, or a metaphor that helps us talk about it.”</p>
+        </article>
+        <article>
+          <h3>Customization ideas</h3>
+          <p>Add local clinic contact information, QR-code sharing, printable handouts, or condition-specific pages for Lewy body dementia, Parkinson disease dementia, Alzheimer disease, vascular cognitive impairment, medication-induced psychosis, and substance-related states.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-card sources" aria-labelledby="sourcesTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Selected references used to draft this patient guide</p>
+        <h2 id="sourcesTitle">Sources</h2>
+      </div>
+      <ul>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9012267/" target="_blank" rel="noreferrer">Nature Reviews Disease Primers: Delirium</a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/24206937/" target="_blank" rel="noreferrer">Neuropathogenesis of delirium: review of current etiologic theories and common pathways</a></li>
+        <li><a href="https://www.nia.nih.gov/health/alzheimers-causes-and-risk-factors/what-happens-brain-alzheimers-disease" target="_blank" rel="noreferrer">National Institute on Aging: What happens to the brain in Alzheimer’s disease?</a></li>
+        <li><a href="https://www.nimh.nih.gov/news/science-updates/2013/mapping-brain-circuits-provides-clues-to-schizophrenia-earlier-detection-of-psychosis" target="_blank" rel="noreferrer">NIMH: Prefrontal cortex-basal ganglia circuit and psychosis research</a></li>
+        <li><a href="https://www.nimh.nih.gov/news/science-updates/2018/hyperconnectivity-in-a-brain-circuit-may-predict-psychosis" target="_blank" rel="noreferrer">NIMH: Cerebello-thalamo-cortical network and psychosis research</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Educational prototype. Review and adapt before clinical deployment.</p>
+    <a href="#top">Back to top</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
