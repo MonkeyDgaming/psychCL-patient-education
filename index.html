@@ -66,7 +66,7 @@
     <section class="section-card" id="compare" aria-labelledby="compareTitle">
       <div class="section-heading">
         <p class="eyebrow">Step 1</p>
-        <h2 id="compareTitle">Compare the three experiences</h2>
+        <h2 id="compareTitle">Compare common brain-and-behavior syndromes</h2>
         <p>Tap a card to focus the rest of the page on that condition.</p>
       </div>
       <div class="condition-grid" role="list">
@@ -89,6 +89,27 @@
           <h3>Psychosis</h3>
           <p><strong>Timing:</strong> can be brief or persistent depending on cause.</p>
           <p><strong>Pattern:</strong> hallucinations, delusions, or disorganized thinking.</p>
+          <span class="badge solid">Solid evidence</span>
+        </button>
+        <button class="condition-card" type="button" data-condition="tbi" role="listitem" aria-pressed="false">
+          <span class="condition-icon" aria-hidden="true">🩹</span>
+          <h3>TBI / brain injury</h3>
+          <p><strong>Timing:</strong> can be sudden after a head injury.</p>
+          <p><strong>Pattern:</strong> headache, confusion, memory trouble, mood change, sleep change, impulsivity, or slowed thinking.</p>
+          <span class="badge solid">Solid evidence</span>
+        </button>
+        <button class="condition-card" type="button" data-condition="mania" role="listitem" aria-pressed="false">
+          <span class="condition-icon" aria-hidden="true">🚀</span>
+          <h3>Mania</h3>
+          <p><strong>Timing:</strong> usually days to weeks.</p>
+          <p><strong>Pattern:</strong> decreased need for sleep, increased energy, racing thoughts, impulsivity, grandiosity, irritability, or psychosis.</p>
+          <span class="badge solid">Solid evidence</span>
+        </button>
+        <button class="condition-card" type="button" data-condition="mdd" role="listitem" aria-pressed="false">
+          <span class="condition-icon" aria-hidden="true">🌧️</span>
+          <h3>Major depression</h3>
+          <p><strong>Timing:</strong> usually weeks or longer.</p>
+          <p><strong>Pattern:</strong> low mood or loss of interest plus sleep, appetite, energy, concentration, guilt, movement-speed, or suicidal-thought changes.</p>
           <span class="badge solid">Solid evidence</span>
         </button>
       </div>
@@ -125,7 +146,9 @@
         <button class="tab-button" role="tab" aria-selected="false" aria-controls="networkPanel" id="networkTab" data-tab="network">Networks</button>
         <button class="tab-button" role="tab" aria-selected="false" aria-controls="metaphorPanel" id="metaphorTab" data-tab="metaphor">Metaphors</button>
       </div>
-      <div class="tab-panel active" id="ntPanel" role="tabpanel" aria-labelledby="ntTab"></div>
+      <div class="tab-panel active" id="ntPanel" role="tabpanel" aria-labelledby="ntTab">
+        <p class="pathway-context" id="ntConditionContext" aria-live="polite"></p>
+      </div>
       <div class="tab-panel" id="networkPanel" role="tabpanel" aria-labelledby="networkTab" hidden></div>
       <div class="tab-panel" id="metaphorPanel" role="tabpanel" aria-labelledby="metaphorTab" hidden></div>
     </section>

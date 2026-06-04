@@ -1,5 +1,6 @@
 const conditions = {
   delirium: {
+    shortName: 'Delirium',
     title: 'Delirium: the brain is acutely overwhelmed',
     core: 'A sudden change in attention and awareness that often fluctuates over the day. It is commonly triggered by medical illness, medications, surgery, pain, sleep loss, dehydration, substance effects, or infection.',
     anatomy: 'Attention and arousal systems are stressed: frontal attention control, thalamic signal routing, brainstem sleep-wake systems, and widespread network connectivity.',
@@ -7,6 +8,7 @@ const conditions = {
     label: 'likely'
   },
   dementia: {
+    shortName: 'Dementia',
     title: 'Dementia: brain systems lose function over time',
     core: 'A persistent decline in thinking skills severe enough to interfere with independence. Alzheimer disease, vascular disease, Lewy body disease, Parkinson disease, frontotemporal degeneration, and other conditions can cause dementia.',
     anatomy: 'The pattern depends on cause. Memory networks often include hippocampus and temporal regions; planning and judgment depend heavily on frontal networks; vascular injury can disrupt many routes.',
@@ -14,6 +16,7 @@ const conditions = {
     label: 'solid'
   },
   psychosis: {
+    shortName: 'Psychosis',
     title: 'Psychosis: the brain assigns reality-level importance to experiences that may not match the outside world',
     core: 'Psychosis can include hearing or seeing things others do not, fixed false beliefs, suspiciousness, or disorganized thinking. It can occur in primary psychiatric illness, delirium, dementia, substances, medications, sleep deprivation, seizures, and other medical conditions.',
     anatomy: 'Research highlights dopamine-linked salience systems, prefrontal control, basal ganglia reward/salience loops, thalamic filtering, temporal-language systems, and cerebello-thalamo-cortical circuits.',
@@ -22,41 +25,43 @@ const conditions = {
   }
 };
 
+let activeCondition = 'delirium';
+
 const regions = {
   prefrontal: {
     title: 'Prefrontal cortex',
-    role: 'Helps with planning, judgment, impulse control, reality testing, and holding goals in mind.',
-    why: ['Delirium can weaken attention and executive control.', 'Dementia can affect planning, insight, social judgment, or behavior.', 'Psychosis research often includes altered prefrontal control over salience and reward circuits.'],
+    role: 'Helps with planning, judgment, impulse control, reality testing, flexible thinking, and holding goals in mind.',
+    why: ['Delirium can weaken attention and executive control.', 'TBI can cause executive dysfunction: trouble initiating, organizing, multitasking, or inhibiting responses.', 'Mania can involve disinhibition, impulsive risk-taking, and reduced pause-before-action control.', 'MDD can bring slowed thinking, indecision, and negative-bias filtering of information.', 'Dementia can affect planning, insight, social judgment, or behavior.', 'Psychosis research often includes altered prefrontal control over salience and reward circuits.'],
     label: 'solid'
   },
   temporal: {
     title: 'Temporal lobe',
     role: 'Supports language, meaning, memory connections, emotion-linked memories, and some sensory interpretations.',
-    why: ['Temporal-language systems can be relevant to auditory hallucinations.', 'Several dementias affect temporal regions and language or memory.', 'Seizures or inflammation in this region can sometimes mimic psychiatric symptoms.'],
+    why: ['Temporal-language systems can be relevant to auditory hallucinations.', 'TBI can affect temporal networks involved in memory, irritability, anxiety, or emotion-linked symptoms.', 'Severe mood disorders can include psychotic features when applicable, such as mood-congruent voices or beliefs.', 'Several dementias affect temporal regions and language or memory.', 'Seizures or inflammation in this region can sometimes mimic psychiatric symptoms.'],
     label: 'likely'
   },
   hippocampus: {
     title: 'Hippocampus',
     role: 'Helps form new memories and connect details into a timeline.',
-    why: ['Alzheimer disease commonly involves memory network injury.', 'Delirium can temporarily disrupt memory encoding because attention is impaired.', 'Stress biology can affect hippocampal function, though mechanisms vary.'],
+    why: ['Alzheimer disease commonly involves memory network injury.', 'Delirium can temporarily disrupt memory encoding because attention is impaired.', 'Depression and chronic stress are linked with memory symptoms and hippocampal stress biology; the exact pathways are likely and still studied.', 'Stress biology can affect hippocampal function, though mechanisms vary.'],
     label: 'solid'
   },
   thalamus: {
     title: 'Thalamus',
     role: 'Acts like a routing hub, helping decide which sensory and body signals reach conscious attention.',
-    why: ['Delirium may involve disrupted routing and connectivity.', 'Psychosis research includes thalamic filtering and cerebello-thalamo-cortical networks.', 'Small strokes or metabolic problems involving hubs can have outsized effects.'],
+    why: ['Delirium may involve disrupted routing and connectivity.', 'After TBI, thalamic hub or connection disruption may affect arousal, filtering, attention, and information flow.', 'Psychosis research includes thalamic filtering and cerebello-thalamo-cortical networks.', 'Small strokes or metabolic problems involving hubs can have outsized effects.'],
     label: 'likely'
   },
   basal: {
     title: 'Basal ganglia',
-    role: 'Helps select actions, habits, motivation, and salience through loops with the frontal cortex.',
-    why: ['Dopamine pathways run through these loops.', 'Psychosis research includes prefrontal-basal ganglia circuit changes.', 'Parkinson disease and Lewy body conditions can affect movement, cognition, sleep, and hallucinations.'],
+    role: 'Helps select actions, habits, reward learning, motivation, psychomotor speed, and salience through loops with the frontal cortex.',
+    why: ['Dopamine pathways run through these loops.', 'Reward, drive, psychomotor slowing, and activation states are relevant to mania and MDD as well as psychosis.', 'Psychosis research includes prefrontal-basal ganglia circuit changes.', 'Parkinson disease and Lewy body conditions can affect movement, cognition, sleep, and hallucinations.'],
     label: 'likely'
   },
   brainstem: {
     title: 'Brainstem and arousal systems',
     role: 'Regulates wakefulness, breathing, autonomic tone, and sleep-wake cycling.',
-    why: ['Delirium often includes sleep-wake reversal or altered alertness.', 'Medications, hypoxia, infection, and metabolic problems can affect arousal.', 'Some dementia syndromes include sleep and visual-perceptual symptoms.'],
+    why: ['Delirium often includes sleep-wake reversal or altered alertness.', 'TBI, mania, and depression can each disrupt sleep-wake regulation, alertness, or daily rhythm.', 'Medications, hypoxia, infection, and metabolic problems can affect arousal.', 'Some dementia syndromes include sleep and visual-perceptual symptoms.'],
     label: 'solid'
   }
 };
@@ -99,14 +104,21 @@ const tabContent = {
       detail: 'Low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.',
       label: 'likely'
     }
+    ['Acetylcholine', 'Attention and memory “tuning.” Low cholinergic activity is a major delirium hypothesis and is important in Alzheimer-related cognitive symptoms.', 'solid'],
+    ['Dopamine', 'Salience, movement, reward, motivation, and prediction. Dysregulated dopamine signaling is strongly linked to psychotic symptoms, reward/salience assignment, and some manic activation; it is one target of antipsychotic medicines.', 'solid'],
+    ['Glutamate', 'The major excitatory messenger. TBI research includes glutamate-related excitotoxic injury, while NMDA/glutamate theories are also relevant to psychosis and depression research; the clinical story is more complex than a simple high/low level.', 'likely'],
+    ['GABA', 'A major inhibitory messenger. Sedatives, withdrawal states, seizures, sleep-wake disruption, and manic activation can alter inhibitory balance and contribute to confusion, agitation, insomnia, or psychotic-like experiences.', 'likely'],
+    ['Norepinephrine & serotonin', 'Arousal, stress response, anxiety, mood, sleep, attention, and perception. These systems are central to many MDD treatment models, but delirium and TBI reviews describe variable changes rather than one consistent direction.', 'likely'],
+    ['Melatonin & circadian biology', 'Sleep-wake timing matters. Circadian disruption is relevant to mania, depression, delirium, and TBI-related sleep-wake problems; low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.', 'likely']
   ],
   network: [
-    ['Default mode network', 'Often discussed in memory, self-reference, daydreaming, and Alzheimer disease research. It is not a single “memory center.”', 'likely'],
-    ['Salience network', 'Helps decide what deserves attention. A teaching frame for psychosis is that the “importance detector” may tag neutral events as highly meaningful.', 'likely'],
+    ['Default mode network', 'Often discussed in memory, self-reference, daydreaming, Alzheimer disease research, and depression rumination. It is not a single “memory center.”', 'likely'],
+    ['Salience network', 'Helps decide what deserves attention. A teaching frame for psychosis is that the “importance detector” may tag neutral events as highly meaningful; this overlaps with reward/salience circuitry.', 'likely'],
+    ['Prefrontal-limbic regulation', 'Prefrontal regions help regulate limbic threat, emotion, and stress responses. This framework is relevant to mood disorders, trauma symptoms, and emotion regulation after brain injury.', 'likely'],
     ['Frontoparietal attention network', 'Helps maintain focus and switch tasks. Delirium often looks like this system cannot stay online reliably.', 'likely'],
     ['Cerebello-thalamo-cortical network', 'A research pathway connecting coordination, timing, cognition, and psychosis risk findings.', 'likely'],
-    ['Prefrontal-basal ganglia loops', 'Support motivation, habit, action selection, and salience. Research links these loops to psychosis and cognitive symptoms.', 'likely'],
-    ['Whole-brain connectivity', 'Delirium may represent a temporary failure of network integration: many systems cannot coordinate under stress.', 'likely']
+    ['Prefrontal-basal ganglia loops', 'Support motivation, habit, action selection, reward learning, drive, and salience. Research links these loops to psychosis, mania, depression, and cognitive symptoms.', 'likely'],
+    ['Whole-brain connectivity', 'Delirium may represent a temporary failure of network integration: many systems cannot coordinate under stress. TBI can also cause diffuse network injury, especially when axons and long-range connections are stretched or sheared.', 'likely']
   ],
   metaphor: [
     ['Delirium as a power grid brownout', 'The lights may flicker room by room. The wiring is not necessarily permanently destroyed, but the system cannot meet demand right now.', 'metaphor'],
@@ -144,6 +156,7 @@ const quizItems = [
 const badge = label => `<span class="badge ${label}">${label === 'solid' ? 'Solid evidence' : label === 'likely' ? 'Likely / still studied' : 'Teaching metaphor'}</span>`;
 
 function renderCondition(conditionKey) {
+  activeCondition = conditionKey;
   const item = conditions[conditionKey];
   document.getElementById('conditionSpotlight').innerHTML = `
     <h3>${item.title}</h3>
@@ -152,6 +165,14 @@ function renderCondition(conditionKey) {
       <div><p class="eyebrow">Brain areas</p><p>${item.anatomy}</p>${badge(item.label)}</div>
       <div><p class="eyebrow">Science status</p><p>${item.science}</p>${badge(item.label)}</div>
     </div>`;
+  updateNtConditionContext();
+}
+
+function updateNtConditionContext() {
+  const context = document.getElementById('ntConditionContext');
+  if (!context) return;
+
+  context.textContent = `Showing neurotransmitter information for: ${conditions[activeCondition].shortName || conditions[activeCondition].title}`;
 }
 
 function renderRegion(regionKey) {
@@ -178,10 +199,19 @@ function renderTab(tabKey) {
   }
 
   target.innerHTML = `<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
+  const contextMarkup = tabKey === 'nt' ? '<p class="pathway-context" id="ntConditionContext" aria-live="polite"></p>' : '';
+
+  target.innerHTML = `${contextMarkup}<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
+  const cards = tabKey === 'nt' ? (neurotransmittersByCondition[selectedConditionKey] || tabContent.nt) : tabContent[tabKey];
+  target.innerHTML = `<div class="pathway-grid">${cards.map(([title, text, label]) => `
     <article class="pathway-card">
       <h3><span>${title}</span>${badge(label)}</h3>
       <p>${text}</p>
     </article>`).join('')}</div>`;
+
+  if (tabKey === 'nt') {
+    updateNtConditionContext();
+  }
 }
 
 function renderChecklist() {
@@ -222,6 +252,7 @@ function initInteractions() {
       card.classList.add('active');
       card.setAttribute('aria-pressed', 'true');
       renderCondition(card.dataset.condition);
+      renderTab('nt');
     });
   });
 
