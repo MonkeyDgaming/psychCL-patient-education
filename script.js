@@ -19,6 +19,27 @@ const conditions = {
     anatomy: 'Research highlights dopamine-linked salience systems, prefrontal control, basal ganglia reward/salience loops, thalamic filtering, temporal-language systems, and cerebello-thalamo-cortical circuits.',
     science: 'Dopamine is important but “too much dopamine” is not the whole story. Glutamate, GABA, inflammation, development, stress, sleep, trauma, and network-level changes can matter depending on the person and cause.',
     label: 'likely'
+  },
+  tbi: {
+    title: 'Traumatic brain injury: the brain is disrupted by an outside force',
+    core: 'Traumatic brain injury can follow a blow, jolt, blast, fall, or penetrating injury. Symptoms may include headache, dizziness, nausea, confusion, memory gaps, slowed thinking, mood changes, sleep disruption, or loss of consciousness.',
+    anatomy: 'Injury patterns vary. Frontal and temporal regions, long white-matter connections, vestibular systems, and brainstem-arousal pathways can be vulnerable depending on force, rotation, and injury severity.',
+    science: 'Clinical diagnosis is based on the injury event and symptom pattern. Network disruption, inflammation, excitotoxicity, blood-flow changes, and diffuse axonal injury are important explanatory frameworks, but no single pathway explains every TBI.',
+    label: 'likely'
+  },
+  mania: {
+    title: 'Mania: mood, energy, sleep, and reward systems are stuck in high gear',
+    core: 'Mania is a period of abnormally elevated, expansive, or irritable mood with increased energy or activity. People may need much less sleep, talk more, feel unusually driven or confident, have racing thoughts, take risks, or become psychotic.',
+    anatomy: 'Research often focuses on prefrontal control, limbic emotion systems, reward and salience networks, basal ganglia loops, and circadian sleep-wake regulation.',
+    science: 'The core sleep-and-energy pattern is clinically well established. Dopamine, glutamate, circadian disruption, stress biology, and reward/salience network changes are leading explanations, but mania is not reducible to one chemical switch.',
+    label: 'likely'
+  },
+  mdd: {
+    title: 'Major depressive disorder: mood, interest, energy, and body rhythms are persistently lowered',
+    core: 'Major depressive disorder involves persistent depressed mood or loss of interest plus symptoms such as sleep or appetite change, low energy, guilt or worthlessness, concentration problems, slowed or agitated movement, or thoughts of death.',
+    anatomy: 'Mood and motivation networks can include prefrontal control regions, limbic emotion circuits, hippocampus, reward pathways, default-mode and salience networks, and sleep-wake systems.',
+    science: 'The clinical syndrome is well established. Network-level changes, serotonin and other neurotransmitters, HPA-axis stress signaling, inflammation, genetics, life stress, and sleep disruption are studied contributors rather than a single-cause explanation.',
+    label: 'likely'
   }
 };
 
