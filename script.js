@@ -63,12 +63,42 @@ const regions = {
 
 const tabContent = {
   nt: [
-    ['Acetylcholine', 'Attention and memory “tuning.” Low cholinergic activity is a major delirium hypothesis and is important in Alzheimer-related cognitive symptoms.', 'solid'],
-    ['Dopamine', 'Salience, movement, reward, motivation, and prediction. Excess or dysregulated dopamine signaling is strongly linked to psychotic symptoms and is one target of antipsychotic medicines.', 'solid'],
-    ['Glutamate', 'The major excitatory messenger. NMDA/glutamate theories are relevant to psychosis and neurodegeneration, but the clinical story is more complex than a simple high/low level.', 'likely'],
-    ['GABA', 'A major inhibitory messenger. Sedatives, withdrawal states, seizures, and sleep-wake disruption can alter inhibitory balance and contribute to confusion or psychotic-like experiences.', 'likely'],
-    ['Norepinephrine & serotonin', 'Arousal, stress response, mood, sleep, attention, and perception. Delirium reviews describe variable changes rather than one consistent direction.', 'likely'],
-    ['Melatonin & circadian biology', 'Sleep-wake timing matters. Low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.', 'likely']
+    {
+      title: 'Acetylcholine',
+      plain: 'Helps tune attention and memory so the brain can focus and learn.',
+      detail: 'Low cholinergic activity is a major delirium hypothesis and is important in Alzheimer-related cognitive symptoms.',
+      label: 'solid'
+    },
+    {
+      title: 'Dopamine',
+      plain: 'Helps the brain tag things as important, motivating, or worth acting on.',
+      detail: 'Dopamine signaling is strongly linked to psychosis and is one target of antipsychotic medicines.',
+      label: 'solid'
+    },
+    {
+      title: 'Glutamate',
+      plain: 'Acts as the brain’s major excitatory messenger, helping signals move forward.',
+      detail: 'NMDA/glutamate theories are relevant to psychosis and neurodegeneration, but the clinical story is more complex than a simple high/low level.',
+      label: 'likely'
+    },
+    {
+      title: 'GABA',
+      plain: 'Acts as a major inhibitory messenger, helping quiet or balance brain signaling.',
+      detail: 'Sedatives, withdrawal states, seizures, and sleep-wake disruption can alter inhibitory balance and contribute to confusion or psychotic-like experiences.',
+      label: 'likely'
+    },
+    {
+      title: 'Norepinephrine & serotonin',
+      plain: 'Help shape arousal, stress response, mood, sleep, attention, and perception.',
+      detail: 'Delirium reviews describe variable changes in norepinephrine and serotonin systems rather than one consistent direction.',
+      label: 'likely'
+    },
+    {
+      title: 'Melatonin & circadian biology',
+      plain: 'Helps coordinate sleep-wake timing so the brain knows when to be alert or rest.',
+      detail: 'Low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.',
+      label: 'likely'
+    }
   ],
   network: [
     ['Default mode network', 'Often discussed in memory, self-reference, daydreaming, and Alzheimer disease research. It is not a single “memory center.”', 'likely'],
@@ -136,6 +166,17 @@ function renderRegion(regionKey) {
 
 function renderTab(tabKey) {
   const target = document.getElementById(`${tabKey}Panel`);
+
+  if (tabKey === 'nt') {
+    target.innerHTML = `<div class="pathway-grid">${tabContent.nt.map(({ title, plain, detail, label }) => `
+      <article class="pathway-card">
+        <h3><span>${title}</span>${badge(label)}</h3>
+        <p><strong>Plain language:</strong> ${plain}</p>
+        <p><strong>Clinical relevance:</strong> ${detail}</p>
+      </article>`).join('')}</div>`;
+    return;
+  }
+
   target.innerHTML = `<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
     <article class="pathway-card">
       <h3><span>${title}</span>${badge(label)}</h3>
