@@ -125,12 +125,6 @@ const tabContent = {
       detail: 'Low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.',
       label: 'likely'
     }
-    ['Acetylcholine', 'Attention and memory “tuning.” Low cholinergic activity is a major delirium hypothesis and is important in Alzheimer-related cognitive symptoms.', 'solid'],
-    ['Dopamine', 'Salience, movement, reward, motivation, and prediction. Dysregulated dopamine signaling is strongly linked to psychotic symptoms, reward/salience assignment, and some manic activation; it is one target of antipsychotic medicines.', 'solid'],
-    ['Glutamate', 'The major excitatory messenger. TBI research includes glutamate-related excitotoxic injury, while NMDA/glutamate theories are also relevant to psychosis and depression research; the clinical story is more complex than a simple high/low level.', 'likely'],
-    ['GABA', 'A major inhibitory messenger. Sedatives, withdrawal states, seizures, sleep-wake disruption, and manic activation can alter inhibitory balance and contribute to confusion, agitation, insomnia, or psychotic-like experiences.', 'likely'],
-    ['Norepinephrine & serotonin', 'Arousal, stress response, anxiety, mood, sleep, attention, and perception. These systems are central to many MDD treatment models, but delirium and TBI reviews describe variable changes rather than one consistent direction.', 'likely'],
-    ['Melatonin & circadian biology', 'Sleep-wake timing matters. Circadian disruption is relevant to mania, depression, delirium, and TBI-related sleep-wake problems; low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.', 'likely']
   ],
   network: [
     ['Default mode network', 'Often discussed in memory, self-reference, daydreaming, Alzheimer disease research, and depression rumination. It is not a single “memory center.”', 'likely'],
@@ -210,29 +204,24 @@ function renderTab(tabKey) {
   const target = document.getElementById(`${tabKey}Panel`);
 
   if (tabKey === 'nt') {
-    target.innerHTML = `<div class="pathway-grid">${tabContent.nt.map(({ title, plain, detail, label }) => `
-      <article class="pathway-card">
-        <h3><span>${title}</span>${badge(label)}</h3>
-        <p><strong>Plain language:</strong> ${plain}</p>
-        <p><strong>Clinical relevance:</strong> ${detail}</p>
-      </article>`).join('')}</div>`;
+    target.innerHTML = `
+      <p class="pathway-context" id="ntConditionContext" aria-live="polite"></p>
+      <div class="pathway-grid">${tabContent.nt.map(({ title, plain, detail, label }) => `
+        <article class="pathway-card">
+          <h3><span>${title}</span>${badge(label)}</h3>
+          <p><strong>Plain language:</strong> ${plain}</p>
+          <p><strong>Clinical relevance:</strong> ${detail}</p>
+        </article>`).join('')}
+      </div>`;
+    updateNtConditionContext();
     return;
   }
 
   target.innerHTML = `<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
-  const contextMarkup = tabKey === 'nt' ? '<p class="pathway-context" id="ntConditionContext" aria-live="polite"></p>' : '';
-
-  target.innerHTML = `${contextMarkup}<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
-  const cards = tabKey === 'nt' ? (neurotransmittersByCondition[selectedConditionKey] || tabContent.nt) : tabContent[tabKey];
-  target.innerHTML = `<div class="pathway-grid">${cards.map(([title, text, label]) => `
     <article class="pathway-card">
       <h3><span>${title}</span>${badge(label)}</h3>
       <p>${text}</p>
     </article>`).join('')}</div>`;
-
-  if (tabKey === 'nt') {
-    updateNtConditionContext();
-  }
 }
 
 function renderChecklist() {
