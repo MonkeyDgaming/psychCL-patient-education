@@ -24,6 +24,7 @@ const conditions = {
     label: 'likely'
   },
   tbi: {
+    shortName: 'TBI / brain injury',
     title: 'Traumatic brain injury: the brain is disrupted by an outside force',
     core: 'Traumatic brain injury can follow a blow, jolt, blast, fall, or penetrating injury. Symptoms may include headache, dizziness, nausea, confusion, memory gaps, slowed thinking, mood changes, sleep disruption, or loss of consciousness.',
     anatomy: 'Injury patterns vary. Frontal and temporal regions, long white-matter connections, vestibular systems, and brainstem-arousal pathways can be vulnerable depending on force, rotation, and injury severity.',
@@ -31,6 +32,7 @@ const conditions = {
     label: 'likely'
   },
   mania: {
+    shortName: 'Mania',
     title: 'Mania: mood, energy, sleep, and reward systems are stuck in high gear',
     core: 'Mania is a period of abnormally elevated, expansive, or irritable mood with increased energy or activity. People may need much less sleep, talk more, feel unusually driven or confident, have racing thoughts, take risks, or become psychotic.',
     anatomy: 'Research often focuses on prefrontal control, limbic emotion systems, reward and salience networks, basal ganglia loops, and circadian sleep-wake regulation.',
@@ -38,6 +40,7 @@ const conditions = {
     label: 'likely'
   },
   mdd: {
+    shortName: 'Major depression',
     title: 'Major depressive disorder: mood, interest, energy, and body rhythms are persistently lowered',
     core: 'Major depressive disorder involves persistent depressed mood or loss of interest plus symptoms such as sleep or appetite change, low energy, guilt or worthlessness, concentration problems, slowed or agitated movement, or thoughts of death.',
     anatomy: 'Mood and motivation networks can include prefrontal control regions, limbic emotion circuits, hippocampus, reward pathways, default-mode and salience networks, and sleep-wake systems.',
@@ -97,40 +100,34 @@ const tabContent = {
     },
     {
       title: 'Dopamine',
-      plain: 'Helps the brain tag things as important, motivating, or worth acting on.',
-      detail: 'Dopamine signaling is strongly linked to psychosis and is one target of antipsychotic medicines.',
+      plain: 'Helps the brain tag things as important, motivating, rewarding, or worth acting on.',
+      detail: 'Dopamine signaling is strongly linked to psychosis, reward/salience assignment, movement, motivation, and some manic activation; it is one target of antipsychotic medicines.',
       label: 'solid'
     },
     {
       title: 'Glutamate',
       plain: 'Acts as the brain’s major excitatory messenger, helping signals move forward.',
-      detail: 'NMDA/glutamate theories are relevant to psychosis and neurodegeneration, but the clinical story is more complex than a simple high/low level.',
+      detail: 'TBI research includes glutamate-related excitotoxic injury, while NMDA/glutamate theories are also relevant to psychosis and depression research; the clinical story is more complex than a simple high/low level.',
       label: 'likely'
     },
     {
       title: 'GABA',
       plain: 'Acts as a major inhibitory messenger, helping quiet or balance brain signaling.',
-      detail: 'Sedatives, withdrawal states, seizures, and sleep-wake disruption can alter inhibitory balance and contribute to confusion or psychotic-like experiences.',
+      detail: 'Sedatives, withdrawal states, seizures, sleep-wake disruption, and manic activation can alter inhibitory balance and contribute to confusion, agitation, insomnia, or psychotic-like experiences.',
       label: 'likely'
     },
     {
       title: 'Norepinephrine & serotonin',
-      plain: 'Help shape arousal, stress response, mood, sleep, attention, and perception.',
-      detail: 'Delirium reviews describe variable changes in norepinephrine and serotonin systems rather than one consistent direction.',
+      plain: 'Help shape arousal, stress response, anxiety, mood, sleep, attention, and perception.',
+      detail: 'These systems are central to many MDD treatment models, but delirium and TBI reviews describe variable changes rather than one consistent direction.',
       label: 'likely'
     },
     {
       title: 'Melatonin & circadian biology',
       plain: 'Helps coordinate sleep-wake timing so the brain knows when to be alert or rest.',
-      detail: 'Low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.',
+      detail: 'Circadian disruption is relevant to mania, depression, delirium, and TBI-related sleep-wake problems; low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.',
       label: 'likely'
     }
-    ['Acetylcholine', 'Attention and memory “tuning.” Low cholinergic activity is a major delirium hypothesis and is important in Alzheimer-related cognitive symptoms.', 'solid'],
-    ['Dopamine', 'Salience, movement, reward, motivation, and prediction. Dysregulated dopamine signaling is strongly linked to psychotic symptoms, reward/salience assignment, and some manic activation; it is one target of antipsychotic medicines.', 'solid'],
-    ['Glutamate', 'The major excitatory messenger. TBI research includes glutamate-related excitotoxic injury, while NMDA/glutamate theories are also relevant to psychosis and depression research; the clinical story is more complex than a simple high/low level.', 'likely'],
-    ['GABA', 'A major inhibitory messenger. Sedatives, withdrawal states, seizures, sleep-wake disruption, and manic activation can alter inhibitory balance and contribute to confusion, agitation, insomnia, or psychotic-like experiences.', 'likely'],
-    ['Norepinephrine & serotonin', 'Arousal, stress response, anxiety, mood, sleep, attention, and perception. These systems are central to many MDD treatment models, but delirium and TBI reviews describe variable changes rather than one consistent direction.', 'likely'],
-    ['Melatonin & circadian biology', 'Sleep-wake timing matters. Circadian disruption is relevant to mania, depression, delirium, and TBI-related sleep-wake problems; low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.', 'likely']
   ],
   network: [
     ['Default mode network', 'Often discussed in memory, self-reference, daydreaming, Alzheimer disease research, and depression rumination. It is not a single “memory center.”', 'likely'],
@@ -145,6 +142,9 @@ const tabContent = {
     ['Delirium as a power grid brownout', 'The lights may flicker room by room. The wiring is not necessarily permanently destroyed, but the system cannot meet demand right now.', 'metaphor'],
     ['Dementia as roads wearing out', 'Some routes become slower or blocked over months to years. People may take detours, but daily navigation gets harder.', 'metaphor'],
     ['Psychosis as a noisy alarm system', 'The alarm may ring for smoke that is not there. The experience is real to the person even when the outside cause is not present.', 'metaphor'],
+    ['TBI as disrupted routes after a storm', 'Some pathways may be temporarily blocked or slowed after injury, while other areas can help reroute recovery over time.', 'metaphor'],
+    ['Mania as an accelerator stuck down', 'Energy, speed, reward drive, and confidence may surge while sleep and pause-before-action controls fall behind.', 'metaphor'],
+    ['Depression as the dimmer switch turned low', 'Motivation, pleasure, energy, and thinking speed can feel turned down even when the person is trying hard.', 'metaphor'],
     ['Neurotransmitters as volume knobs', 'They do not simply turn the whole brain on or off; they tune circuits differently depending on receptor, region, timing, and illness.', 'metaphor']
   ]
 };
@@ -210,29 +210,24 @@ function renderTab(tabKey) {
   const target = document.getElementById(`${tabKey}Panel`);
 
   if (tabKey === 'nt') {
-    target.innerHTML = `<div class="pathway-grid">${tabContent.nt.map(({ title, plain, detail, label }) => `
-      <article class="pathway-card">
-        <h3><span>${title}</span>${badge(label)}</h3>
-        <p><strong>Plain language:</strong> ${plain}</p>
-        <p><strong>Clinical relevance:</strong> ${detail}</p>
-      </article>`).join('')}</div>`;
+    target.innerHTML = `
+      <p class="pathway-context" id="ntConditionContext" aria-live="polite"></p>
+      <div class="pathway-grid">${tabContent.nt.map(({ title, plain, detail, label }) => `
+        <article class="pathway-card">
+          <h3><span>${title}</span>${badge(label)}</h3>
+          <p><strong>Plain language:</strong> ${plain}</p>
+          <p><strong>Clinical relevance:</strong> ${detail}</p>
+        </article>`).join('')}
+      </div>`;
+    updateNtConditionContext();
     return;
   }
 
   target.innerHTML = `<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
-  const contextMarkup = tabKey === 'nt' ? '<p class="pathway-context" id="ntConditionContext" aria-live="polite"></p>' : '';
-
-  target.innerHTML = `${contextMarkup}<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
-  const cards = tabKey === 'nt' ? (neurotransmittersByCondition[selectedConditionKey] || tabContent.nt) : tabContent[tabKey];
-  target.innerHTML = `<div class="pathway-grid">${cards.map(([title, text, label]) => `
     <article class="pathway-card">
       <h3><span>${title}</span>${badge(label)}</h3>
       <p>${text}</p>
     </article>`).join('')}</div>`;
-
-  if (tabKey === 'nt') {
-    updateNtConditionContext();
-  }
 }
 
 function renderChecklist() {
