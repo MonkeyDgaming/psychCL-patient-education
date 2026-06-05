@@ -201,6 +201,42 @@ main {
 .badge.likely { background: var(--likely-bg); color: var(--likely); }
 .badge.metaphor { background: var(--metaphor-bg); color: var(--metaphor); }
 
+
+.explanation-toggle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+  padding: 0.35rem;
+  border: 1px solid #d7e2f3;
+  border-radius: 999px;
+  background: #f7faff;
+}
+
+.toggle-label {
+  padding: 0 0.4rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.explanation-button {
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--primary-dark);
+  cursor: pointer;
+  font-weight: 900;
+  padding: 0.48rem 0.75rem;
+}
+
+.explanation-button.active,
+.explanation-button[aria-pressed="true"] {
+  background: var(--primary);
+  color: #fff;
+}
+
 .condition-card {
   color: inherit;
   cursor: pointer;
@@ -330,6 +366,11 @@ footer {
   h1 { max-width: 12ch; }
   .brain-visual { min-height: 25rem; }
   .brain-node { width: 6.6rem; font-size: 0.86rem; }
+
+  .explanation-toggle {
+    width: 100%;
+    border-radius: 1rem;
+  }
   footer { flex-direction: column; }
 }
 

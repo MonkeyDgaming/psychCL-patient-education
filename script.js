@@ -1,8 +1,11 @@
+let explanationMode = 'plain';
+
 const conditions = {
   delirium: {
     shortName: 'Delirium',
     title: 'Delirium: the brain is acutely overwhelmed',
     core: 'A sudden change in attention and awareness that often fluctuates over the day. It is commonly triggered by medical illness, medications, surgery, pain, sleep loss, dehydration, substance effects, or infection.',
+    clinical: 'An acute disturbance in attention, awareness, and cognition with a fluctuating course. Delirium is usually multifactorial and commonly reflects systemic illness, medication effects, withdrawal, pain, dehydration, hypoxia, infection, or perioperative stress interacting with brain vulnerability.',
     anatomy: 'Attention and arousal systems are stressed: frontal attention control, thalamic signal routing, brainstem sleep-wake systems, and widespread network connectivity.',
     science: 'A single mechanism has not been proven. Reviews emphasize interacting pathways: inflammation, vascular/metabolic stress, neurotransmitter imbalance, sleep-wake disruption, and network disconnectivity.',
     label: 'likely'
@@ -11,6 +14,7 @@ const conditions = {
     shortName: 'Dementia',
     title: 'Dementia: brain systems lose function over time',
     core: 'A persistent decline in thinking skills severe enough to interfere with independence. Alzheimer disease, vascular disease, Lewy body disease, Parkinson disease, frontotemporal degeneration, and other conditions can cause dementia.',
+    clinical: 'A chronic acquired neurocognitive syndrome in which decline in one or more cognitive domains interferes with independence. Etiology may include Alzheimer disease, vascular cognitive impairment, Lewy body disease, Parkinson disease dementia, frontotemporal degeneration, mixed pathology, or other neurologic and medical causes.',
     anatomy: 'The pattern depends on cause. Memory networks often include hippocampus and temporal regions; planning and judgment depend heavily on frontal networks; vascular injury can disrupt many routes.',
     science: 'In Alzheimer disease, abnormal amyloid and tau biology, synapse loss, inflammation, and brain cell injury are central research and clinical concepts. Cholinergic changes are especially relevant to symptoms and some medicines.',
     label: 'solid'
@@ -19,27 +23,34 @@ const conditions = {
     shortName: 'Psychosis',
     title: 'Psychosis: the brain assigns reality-level importance to experiences that may not match the outside world',
     core: 'Psychosis can include hearing or seeing things others do not, fixed false beliefs, suspiciousness, or disorganized thinking. It can occur in primary psychiatric illness, delirium, dementia, substances, medications, sleep deprivation, seizures, and other medical conditions.',
+    clinical: 'A syndrome of impaired reality testing that may include hallucinations, delusions, disorganized thought, or grossly disorganized behavior. Differential diagnosis includes primary psychotic disorders, mood disorders with psychotic features, delirium, major neurocognitive disorder, substances, medications, seizures, sleep deprivation, and medical illness.',
     anatomy: 'Research highlights dopamine-linked salience systems, prefrontal control, basal ganglia reward/salience loops, thalamic filtering, temporal-language systems, and cerebello-thalamo-cortical circuits.',
     science: 'Dopamine is important but “too much dopamine” is not the whole story. Glutamate, GABA, inflammation, development, stress, sleep, trauma, and network-level changes can matter depending on the person and cause.',
     label: 'likely'
   },
   tbi: {
+    shortName: 'TBI / brain injury',
     title: 'Traumatic brain injury: the brain is disrupted by an outside force',
     core: 'Traumatic brain injury can follow a blow, jolt, blast, fall, or penetrating injury. Symptoms may include headache, dizziness, nausea, confusion, memory gaps, slowed thinking, mood changes, sleep disruption, or loss of consciousness.',
+    clinical: 'A disruption in brain function or evidence of brain pathology caused by external mechanical force. Presentations range from concussion to severe injury and may involve altered mental status, post-traumatic amnesia, focal neurologic findings, vestibular symptoms, affective dysregulation, sleep disturbance, or cognitive slowing.',
     anatomy: 'Injury patterns vary. Frontal and temporal regions, long white-matter connections, vestibular systems, and brainstem-arousal pathways can be vulnerable depending on force, rotation, and injury severity.',
     science: 'Clinical diagnosis is based on the injury event and symptom pattern. Network disruption, inflammation, excitotoxicity, blood-flow changes, and diffuse axonal injury are important explanatory frameworks, but no single pathway explains every TBI.',
     label: 'likely'
   },
   mania: {
+    shortName: 'Mania',
     title: 'Mania: mood, energy, sleep, and reward systems are stuck in high gear',
     core: 'Mania is a period of abnormally elevated, expansive, or irritable mood with increased energy or activity. People may need much less sleep, talk more, feel unusually driven or confident, have racing thoughts, take risks, or become psychotic.',
+    clinical: 'A distinct episode of abnormally elevated, expansive, or irritable mood and increased energy or goal-directed activity, typically with decreased need for sleep, pressured speech, flight of ideas, distractibility, grandiosity, psychomotor activation, risky behavior, functional impairment, hospitalization, or psychosis.',
     anatomy: 'Research often focuses on prefrontal control, limbic emotion systems, reward and salience networks, basal ganglia loops, and circadian sleep-wake regulation.',
     science: 'The core sleep-and-energy pattern is clinically well established. Dopamine, glutamate, circadian disruption, stress biology, and reward/salience network changes are leading explanations, but mania is not reducible to one chemical switch.',
     label: 'likely'
   },
   mdd: {
+    shortName: 'Major depression',
     title: 'Major depressive disorder: mood, interest, energy, and body rhythms are persistently lowered',
     core: 'Major depressive disorder involves persistent depressed mood or loss of interest plus symptoms such as sleep or appetite change, low energy, guilt or worthlessness, concentration problems, slowed or agitated movement, or thoughts of death.',
+    clinical: 'A depressive episode is characterized by persistent depressed mood and/or anhedonia with associated neurovegetative, cognitive, psychomotor, and safety symptoms that cause distress or impairment and are not better explained by substances, medical illness, bereavement context, bipolar disorder, or another condition.',
     anatomy: 'Mood and motivation networks can include prefrontal control regions, limbic emotion circuits, hippocampus, reward pathways, default-mode and salience networks, and sleep-wake systems.',
     science: 'The clinical syndrome is well established. Network-level changes, serotonin and other neurotransmitters, HPA-axis stress signaling, inflammation, genetics, life stress, and sleep disruption are studied contributors rather than a single-cause explanation.',
     label: 'likely'
@@ -125,12 +136,6 @@ const tabContent = {
       detail: 'Low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.',
       label: 'likely'
     }
-    ['Acetylcholine', 'Attention and memory “tuning.” Low cholinergic activity is a major delirium hypothesis and is important in Alzheimer-related cognitive symptoms.', 'solid'],
-    ['Dopamine', 'Salience, movement, reward, motivation, and prediction. Dysregulated dopamine signaling is strongly linked to psychotic symptoms, reward/salience assignment, and some manic activation; it is one target of antipsychotic medicines.', 'solid'],
-    ['Glutamate', 'The major excitatory messenger. TBI research includes glutamate-related excitotoxic injury, while NMDA/glutamate theories are also relevant to psychosis and depression research; the clinical story is more complex than a simple high/low level.', 'likely'],
-    ['GABA', 'A major inhibitory messenger. Sedatives, withdrawal states, seizures, sleep-wake disruption, and manic activation can alter inhibitory balance and contribute to confusion, agitation, insomnia, or psychotic-like experiences.', 'likely'],
-    ['Norepinephrine & serotonin', 'Arousal, stress response, anxiety, mood, sleep, attention, and perception. These systems are central to many MDD treatment models, but delirium and TBI reviews describe variable changes rather than one consistent direction.', 'likely'],
-    ['Melatonin & circadian biology', 'Sleep-wake timing matters. Circadian disruption is relevant to mania, depression, delirium, and TBI-related sleep-wake problems; low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.', 'likely']
   ],
   network: [
     ['Default mode network', 'Often discussed in memory, self-reference, daydreaming, Alzheimer disease research, and depression rumination. It is not a single “memory center.”', 'likely'],
@@ -179,10 +184,13 @@ const badge = label => `<span class="badge ${label}">${label === 'solid' ? 'Soli
 function renderCondition(conditionKey) {
   activeCondition = conditionKey;
   const item = conditions[conditionKey];
+  const explanation = explanationMode === 'clinical' ? item.clinical : item.core;
+  const explanationLabel = explanationMode === 'clinical' ? 'Clinical explanation' : 'Plain language';
+
   document.getElementById('conditionSpotlight').innerHTML = `
     <h3>${item.title}</h3>
     <div class="spotlight-grid">
-      <div><p class="eyebrow">Plain language</p><p>${item.core}</p>${badge('solid')}</div>
+      <div><p class="eyebrow">${explanationLabel}</p><p>${explanation}</p>${badge(explanationMode === 'clinical' ? item.label : 'solid')}</div>
       <div><p class="eyebrow">Brain areas</p><p>${item.anatomy}</p>${badge(item.label)}</div>
       <div><p class="eyebrow">Science status</p><p>${item.science}</p>${badge(item.label)}</div>
     </div>`;
@@ -210,29 +218,21 @@ function renderTab(tabKey) {
   const target = document.getElementById(`${tabKey}Panel`);
 
   if (tabKey === 'nt') {
-    target.innerHTML = `<div class="pathway-grid">${tabContent.nt.map(({ title, plain, detail, label }) => `
+    const modeLabel = explanationMode === 'clinical' ? 'Clinical relevance' : 'Plain language';
+    target.innerHTML = `<p class="pathway-context" id="ntConditionContext" aria-live="polite"></p><div class="pathway-grid">${tabContent.nt.map(({ title, plain, detail, label }) => `
       <article class="pathway-card">
         <h3><span>${title}</span>${badge(label)}</h3>
-        <p><strong>Plain language:</strong> ${plain}</p>
-        <p><strong>Clinical relevance:</strong> ${detail}</p>
+        <p><strong>${modeLabel}:</strong> ${explanationMode === 'clinical' ? detail : plain}</p>
       </article>`).join('')}</div>`;
+    updateNtConditionContext();
     return;
   }
 
   target.innerHTML = `<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
-  const contextMarkup = tabKey === 'nt' ? '<p class="pathway-context" id="ntConditionContext" aria-live="polite"></p>' : '';
-
-  target.innerHTML = `${contextMarkup}<div class="pathway-grid">${tabContent[tabKey].map(([title, text, label]) => `
-  const cards = tabKey === 'nt' ? (neurotransmittersByCondition[selectedConditionKey] || tabContent.nt) : tabContent[tabKey];
-  target.innerHTML = `<div class="pathway-grid">${cards.map(([title, text, label]) => `
     <article class="pathway-card">
       <h3><span>${title}</span>${badge(label)}</h3>
       <p>${text}</p>
     </article>`).join('')}</div>`;
-
-  if (tabKey === 'nt') {
-    updateNtConditionContext();
-  }
 }
 
 function renderChecklist() {
@@ -264,6 +264,19 @@ function initNavigation() {
 }
 
 function initInteractions() {
+  document.querySelectorAll('[data-explanation-mode]').forEach(button => {
+    button.addEventListener('click', () => {
+      explanationMode = button.dataset.explanationMode;
+      document.querySelectorAll('[data-explanation-mode]').forEach(item => {
+        const isActive = item.dataset.explanationMode === explanationMode;
+        item.classList.toggle('active', isActive);
+        item.setAttribute('aria-pressed', String(isActive));
+      });
+      renderCondition(activeCondition);
+      renderTab('nt');
+    });
+  });
+
   document.querySelectorAll('.condition-card').forEach(card => {
     card.addEventListener('click', () => {
       document.querySelectorAll('.condition-card').forEach(item => {
