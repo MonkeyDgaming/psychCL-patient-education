@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Patient-facing delirium, dementia, and psychosis education tool with evidence labels, plain-language analogies, and interactive brain pathway content." />
-  <title>Brain Changes: Delirium, Dementia & Psychosis</title>
+  <meta name="description" content="Patient-facing brain-and-behavior education guide for delirium, dementia, psychosis, traumatic brain injury, mania, and major depression, with evidence labels and plain-language explanations." />
+  <title>Brain & Behavior Education Guide</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -26,8 +26,8 @@
     <section class="hero-content">
       <div>
         <p class="eyebrow">Patient & family education</p>
-        <h1>Understanding delirium, dementia, and psychosis without oversimplifying the science.</h1>
-        <p class="hero-copy">Use this phone-friendly guide to explain what is well established, what is likely but still being studied, and what is a teaching metaphor meant to make the ideas easier to remember.</p>
+        <h1>A brain-and-behavior guide for changes in thinking, perception, mood, and injury.</h1>
+        <p class="hero-copy">Use this phone-friendly guide to discuss acute confusion, neurocognitive disorders, psychosis, TBI, mania, and depression while keeping evidence, research explanations, and teaching metaphors clearly labeled.</p>
         <div class="hero-actions">
           <a class="button primary" href="#compare">Start with the big picture</a>
           <a class="button secondary" href="#clinician-note">Clinician notes</a>
@@ -67,7 +67,7 @@
       <div class="section-heading">
         <p class="eyebrow">Step 1</p>
         <h2 id="compareTitle">Compare common brain-and-behavior syndromes</h2>
-        <p>Tap a card to focus the rest of the page on that condition.</p>
+        <p>Tap a card to focus the rest of the page on one selected primary condition.</p>
       </div>
       <div class="condition-grid" role="list">
         <button class="condition-card active" type="button" data-condition="delirium" role="listitem" aria-pressed="true">
@@ -92,30 +92,21 @@
           <span class="badge solid">Solid evidence</span>
         </button>
         <button class="condition-card" type="button" data-condition="tbi" role="listitem" aria-pressed="false">
-          <span class="condition-icon" aria-hidden="true">🧠</span>
-          <h3>Traumatic brain injury</h3>
-          <p><strong>Timing:</strong> starts after a blow, jolt, blast, fall, or penetrating injury.</p>
-          <p><strong>Pattern:</strong> headache, confusion, memory gaps, dizziness, mood, or sleep changes.</p>
           <span class="condition-icon" aria-hidden="true">🩹</span>
           <h3>TBI / brain injury</h3>
-          <p><strong>Timing:</strong> can be sudden after a head injury.</p>
+          <p><strong>Timing:</strong> can be sudden after a blow, jolt, blast, fall, or penetrating injury.</p>
           <p><strong>Pattern:</strong> headache, confusion, memory trouble, mood change, sleep change, impulsivity, or slowed thinking.</p>
           <span class="badge solid">Solid evidence</span>
         </button>
         <button class="condition-card" type="button" data-condition="mania" role="listitem" aria-pressed="false">
           <span class="condition-icon" aria-hidden="true">🚀</span>
           <h3>Mania</h3>
-          <p><strong>Timing:</strong> a distinct period of elevated or irritable mood and increased energy.</p>
-          <p><strong>Pattern:</strong> less need for sleep, racing thoughts, impulsivity, or risky behavior.</p>
           <p><strong>Timing:</strong> usually days to weeks.</p>
           <p><strong>Pattern:</strong> decreased need for sleep, increased energy, racing thoughts, impulsivity, grandiosity, irritability, or psychosis.</p>
           <span class="badge solid">Solid evidence</span>
         </button>
         <button class="condition-card" type="button" data-condition="mdd" role="listitem" aria-pressed="false">
           <span class="condition-icon" aria-hidden="true">🌧️</span>
-          <h3>Major depressive disorder</h3>
-          <p><strong>Timing:</strong> symptoms persist for weeks or longer and impair daily life.</p>
-          <p><strong>Pattern:</strong> depressed mood or loss of interest with sleep, appetite, energy, or thinking changes.</p>
           <h3>Major depression</h3>
           <p><strong>Timing:</strong> usually weeks or longer.</p>
           <p><strong>Pattern:</strong> low mood or loss of interest plus sleep, appetite, energy, concentration, guilt, movement-speed, or suicidal-thought changes.</p>
@@ -129,7 +120,7 @@
       <div class="section-heading">
         <p class="eyebrow">Step 2</p>
         <h2 id="brainMapTitle">Functional neuroanatomy map</h2>
-        <p>Tap a region to explain what it does and why it can matter in delirium, dementia, or psychosis.</p>
+        <p>Tap a region to explain what it does and why it can matter across brain-and-behavior conditions.</p>
       </div>
       <div class="brain-layout">
         <div class="brain-visual" role="group" aria-label="Simplified brain diagram with tappable regions">
@@ -166,7 +157,7 @@
       <div class="section-heading">
         <p class="eyebrow">Step 4</p>
         <h2 id="visitGuideTitle">Questions families can bring to the visit</h2>
-        <p>Use the checklist to collect observations that help clinicians separate acute delirium from chronic dementia, primary psychiatric illness, medication effects, substance effects, and medical causes.</p>
+        <p>Use the checklist to collect observations that help clinicians separate acute delirium, chronic neurocognitive change, mood episodes, TBI-related symptoms, medication/substance effects, primary psychiatric illness, and medical causes.</p>
       </div>
       <div class="checklist" id="checklist"></div>
       <button class="button secondary" type="button" id="resetChecklist">Clear checklist</button>
