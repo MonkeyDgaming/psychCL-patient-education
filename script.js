@@ -108,32 +108,32 @@ const tabContent = {
     },
     {
       title: 'Dopamine',
-      plain: 'Helps the brain tag things as important, motivating, or worth acting on.',
-      detail: 'Dopamine signaling is strongly linked to psychosis and is one target of antipsychotic medicines.',
+      plain: 'Helps the brain tag things as important, motivating, rewarding, or worth acting on.',
+      detail: 'Dopamine signaling is strongly linked to psychosis, reward/salience assignment, movement, motivation, and some manic activation; it is one target of antipsychotic medicines.',
       label: 'solid'
     },
     {
       title: 'Glutamate',
       plain: 'Acts as the brain’s major excitatory messenger, helping signals move forward.',
-      detail: 'NMDA/glutamate theories are relevant to psychosis and neurodegeneration, but the clinical story is more complex than a simple high/low level.',
+      detail: 'TBI research includes glutamate-related excitotoxic injury, while NMDA/glutamate theories are also relevant to psychosis and depression research; the clinical story is more complex than a simple high/low level.',
       label: 'likely'
     },
     {
       title: 'GABA',
       plain: 'Acts as a major inhibitory messenger, helping quiet or balance brain signaling.',
-      detail: 'Sedatives, withdrawal states, seizures, and sleep-wake disruption can alter inhibitory balance and contribute to confusion or psychotic-like experiences.',
+      detail: 'Sedatives, withdrawal states, seizures, sleep-wake disruption, and manic activation can alter inhibitory balance and contribute to confusion, agitation, insomnia, or psychotic-like experiences.',
       label: 'likely'
     },
     {
       title: 'Norepinephrine & serotonin',
-      plain: 'Help shape arousal, stress response, mood, sleep, attention, and perception.',
-      detail: 'Delirium reviews describe variable changes in norepinephrine and serotonin systems rather than one consistent direction.',
+      plain: 'Help shape arousal, stress response, anxiety, mood, sleep, attention, and perception.',
+      detail: 'These systems are central to many MDD treatment models, but delirium and TBI reviews describe variable changes rather than one consistent direction.',
       label: 'likely'
     },
     {
       title: 'Melatonin & circadian biology',
       plain: 'Helps coordinate sleep-wake timing so the brain knows when to be alert or rest.',
-      detail: 'Low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.',
+      detail: 'Circadian disruption is relevant to mania, depression, delirium, and TBI-related sleep-wake problems; low or mistimed circadian signaling is one proposed contributor to delirium, especially in hospitals.',
       label: 'likely'
     }
   ],
@@ -150,6 +150,9 @@ const tabContent = {
     ['Delirium as a power grid brownout', 'The lights may flicker room by room. The wiring is not necessarily permanently destroyed, but the system cannot meet demand right now.', 'metaphor'],
     ['Dementia as roads wearing out', 'Some routes become slower or blocked over months to years. People may take detours, but daily navigation gets harder.', 'metaphor'],
     ['Psychosis as a noisy alarm system', 'The alarm may ring for smoke that is not there. The experience is real to the person even when the outside cause is not present.', 'metaphor'],
+    ['TBI as disrupted routes after a storm', 'Some pathways may be temporarily blocked or slowed after injury, while other areas can help reroute recovery over time.', 'metaphor'],
+    ['Mania as an accelerator stuck down', 'Energy, speed, reward drive, and confidence may surge while sleep and pause-before-action controls fall behind.', 'metaphor'],
+    ['Depression as the dimmer switch turned low', 'Motivation, pleasure, energy, and thinking speed can feel turned down even when the person is trying hard.', 'metaphor'],
     ['Neurotransmitters as volume knobs', 'They do not simply turn the whole brain on or off; they tune circuits differently depending on receptor, region, timing, and illness.', 'metaphor']
   ]
 };
@@ -218,12 +221,15 @@ function renderTab(tabKey) {
   const target = document.getElementById(`${tabKey}Panel`);
 
   if (tabKey === 'nt') {
-    const modeLabel = explanationMode === 'clinical' ? 'Clinical relevance' : 'Plain language';
-    target.innerHTML = `<p class="pathway-context" id="ntConditionContext" aria-live="polite"></p><div class="pathway-grid">${tabContent.nt.map(({ title, plain, detail, label }) => `
-      <article class="pathway-card">
-        <h3><span>${title}</span>${badge(label)}</h3>
-        <p><strong>${modeLabel}:</strong> ${explanationMode === 'clinical' ? detail : plain}</p>
-      </article>`).join('')}</div>`;
+    target.innerHTML = `
+      <p class="pathway-context" id="ntConditionContext" aria-live="polite"></p>
+      <div class="pathway-grid">${tabContent.nt.map(({ title, plain, detail, label }) => `
+        <article class="pathway-card">
+          <h3><span>${title}</span>${badge(label)}</h3>
+          <p><strong>Plain language:</strong> ${plain}</p>
+          <p><strong>Clinical relevance:</strong> ${detail}</p>
+        </article>`).join('')}
+      </div>`;
     updateNtConditionContext();
     return;
   }
